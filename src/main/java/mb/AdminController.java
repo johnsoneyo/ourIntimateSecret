@@ -306,6 +306,13 @@ public class AdminController {
         }
 
     }
+    
+    public boolean catEquals(Category cat){
+        
+       if(cat.equals(c)){
+           return true;
+       }else return false;
+    }
 
     public String logout() {
         context = FacesContext.getCurrentInstance();

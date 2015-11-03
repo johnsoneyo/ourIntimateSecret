@@ -16,6 +16,10 @@
         <location>/w/error.xhtml</location>
     </error-page>
   
+    <error-page>
+    <exception-type>java.io.FileNotFoundException</exception-type>
+    <location>/w/error.xhtml</location>
+</error-page>
     
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
