@@ -156,11 +156,10 @@ public class AdminController {
     }
 
     public String viewPost(Post p) {
-        System.out.println("Post is "+p.getPostTitle());
         
         PostViews pv = new PostViews();
         pv.setPostId(p);
-      //   ev.recordView(pv);
+        ev.recordView(pv);
         this.p = p;
         return "view_post";
     }

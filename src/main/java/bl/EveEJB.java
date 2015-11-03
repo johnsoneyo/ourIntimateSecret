@@ -220,12 +220,12 @@ public class EveEJB {
         try {
 
             //Test environment
-            String masterReportFileName = "/home/johnson3yo/Desktop/shop/evesi.jrxml";
-            String subReportFileName = "/home/johnson3yo/Desktop/shop/evis_sub.jrxml";
+         //   String masterReportFileName = "/home/johnson3yo/Desktop/shop/evesi.jrxml";
+          //  String subReportFileName = "/home/johnson3yo/Desktop/shop/evis_sub.jrxml";
 
             //Production environment
-//             String masterReportFileName = "/home/ubuntu/jpr/evesi.jrxml";
-//              String subReportFileName = "/home/ubuntu/jpr/evis_sub.jrxml";
+             String masterReportFileName = "/home/ubuntu/jpr/evesi.jrxml";
+             String subReportFileName = "/home/ubuntu/jpr/evis_sub.jrxml";
             JRBeanCollectionDataSource beanColDataSource = new JRBeanCollectionDataSource(iList);
 
             JasperReport jasperMasterReport = JasperCompileManager.compileReport(masterReportFileName);
@@ -269,9 +269,9 @@ public class EveEJB {
             JasperDesign jasperDesign = null;
             Map parameters = new HashMap();
             //Test environment
-            jasperDesign = JRXmlLoader.load("/home/johnson3yo/Desktop/shop/report2.jrxml");
+           //  jasperDesign = JRXmlLoader.load("/home/johnson3yo/Desktop/shop/report2.jrxml");
             //Production environment
-            // jasperDesign = JRXmlLoader.load("/home/ubuntu/jpr/report2.jrxml");
+              jasperDesign = JRXmlLoader.load("/home/ubuntu/jpr/report2.jrxml");
             jasperReport = JasperCompileManager.compileReport(jasperDesign);
             jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JRBeanCollectionDataSource(oList));
             byte[] val = JasperExportManager.exportReportToPdf(jasperPrint);
@@ -398,5 +398,11 @@ public class EveEJB {
         }
         List<Post> pr = new ArrayList(similarPost);
         return pr;
+    }
+
+    public List<Post> getPopularPost() {
+      List<Post>pList = em.createQuery("select p.postId from PostViews p group by "
+              + "p.postId order by count(p.id) desc ").setMaxResults(5).getResultList();
+     return pList;
     }
 }

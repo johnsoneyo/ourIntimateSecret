@@ -374,8 +374,7 @@ public class DashboardController {
     public String viewPost(Post p) {
         pv.setPostId(p);
         ev.recordView(pv);
-
-        return "/pages/view_post";
+            return "/pages/view_post";
     }
 
     public String createProduct() {
@@ -526,5 +525,9 @@ public class DashboardController {
         return ev.getSimilarPost(p);
     }
     
+    
+    public List<Post>getPopularPost(){
+        return ev.getPopularPost();
+    }
     
 }

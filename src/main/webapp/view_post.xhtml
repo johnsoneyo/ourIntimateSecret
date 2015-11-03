@@ -194,7 +194,7 @@
 
                 <!-- Side Widget Well -->
                 <div class="well">
-                    <h4>Similar Post</h4>
+                    <h4>Similar Posts</h4>
                     
                        <div class="row">
                         <div class="col-lg-12">
@@ -206,7 +206,7 @@
 			    <h:graphicImage width="40" height="40" value="/image?post_id=#{p.id}" />
                             </a>
 			    <div class="media-body">
-                                <h4 class="media-heading"><h:commandLink value='#{p.postTitle}' action='#{adminController.viewPost(p)}' /></h4>
+                                <h4 class="media-heading"><h:commandLink    action='#{adminController.viewPost(p)}' ><h:outputText value='#{p.postTitle}' escape="false" /></h:commandLink></h4>
 			      <p class="by-author">By Omotayo </p>
 			    </div>
 			  </li>
