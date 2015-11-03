@@ -29,6 +29,19 @@
         <link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css" />
 
         <script type='text/javascript' src='//dsms0mj1bbhn4.cloudfront.net/assets/pub/shareaholic.js' data-shr-siteid='e32ac80dca1e464a110745fb3de90f9b' data-cfasync='false' async='async'></script>
+
+       <script>
+  (function (w,i,d,g,e,t,s) {w[d] = w[d]||[];t= i.createElement(g);
+    t.async=1;t.src=e;s=i.getElementsByTagName(g)[0];s.parentNode.insertBefore(t, s);
+  })(window, document, '_gscq','script','//widgets.getsitecontrol.com/28494/script.js');
+</script>
+        
+        <script>
+  (function (w,i,d,g,e,t,s) {w[d] = w[d]||[];t= i.createElement(g);
+    t.async=1;t.src=e;s=i.getElementsByTagName(g)[0];s.parentNode.insertBefore(t, s);
+  })(window, document, '_gscq','script','//widgets.getsitecontrol.com/28494/script.js');
+</script>
+
     </h:head>
 
     <h:body>
@@ -110,8 +123,8 @@
                         <h2>
                             <h:outputText value="#{po.postTitle}" escape="false" />
                         </h2>
-                       <div class='shareaholic-canvas' data-app='share_buttons' data-app-id=''></div> 
-                       <p class="lead">
+                        <div class='shareaholic-canvas' data-app='share_buttons' data-app-id=''></div> 
+                        <p class="lead">
                             by <a href="index.php">Omotayo eve</a>
                         </p>
                         <p><label class="label label-danger " >#{po.sectionId.sectionName}</label></p>
@@ -187,26 +200,26 @@
                         <h4>Popular Posts</h4>
 
                         <div class="row">
-                        <div class="col-lg-12">
-                           <h:form>
-                               <ui:repeat value="#{dashboardController.popularPost}" var='p' > 
-                         <ul class="media-list main-list">
-			  <li class="media">
-			    <a class="pull-left" href="#">
-			    <h:graphicImage width="40" height="40" value="/image?post_id=#{p.id}" />
-                            </a>
-			    <div class="media-body">
-                                <h4 class="media-heading"><h:commandLink    action='#{adminController.viewPost(p)}' ><h:outputText value='#{p.postTitle}' escape="false" /></h:commandLink></h4>
-			      <p class="by-author">By Omotayo </p>
-			    </div>
-			  </li>
-			
-			</ul>
-                         </ui:repeat>         
-                          </h:form>
+                            <div class="col-lg-12">
+                                <h:form>
+                                    <ui:repeat value="#{dashboardController.popularPost}" var='p' > 
+                                        <ul class="media-list main-list">
+                                            <li class="media">
+                                                <a class="pull-left" href="#">
+                                                    <h:graphicImage width="40" height="40" value="/image?post_id=#{p.id}" />
+                                                </a>
+                                                <div class="media-body">
+                                                    <h4 class="media-heading"><h:commandLink    action='#{adminController.viewPost(p)}' ><h:outputText value='#{p.postTitle}' escape="false" /></h:commandLink></h4>
+                                                    <p class="by-author">By Omotayo </p>
+                                                </div>
+                                            </li>
+
+                                        </ul>
+                                    </ui:repeat>         
+                                </h:form>
+                            </div>
+
                         </div>
-                       
-                    </div>
                     </div>
 
                 </div>

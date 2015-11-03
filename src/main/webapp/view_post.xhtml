@@ -29,6 +29,14 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+      <script type='text/javascript' src='//dsms0mj1bbhn4.cloudfront.net/assets/pub/shareaholic.js' data-shr-siteid='e32ac80dca1e464a110745fb3de90f9b' data-cfasync='false' async='async'></script>
+
+       <script>
+  (function (w,i,d,g,e,t,s) {w[d] = w[d]||[];t= i.createElement(g);
+    t.async=1;t.src=e;s=i.getElementsByTagName(g)[0];s.parentNode.insertBefore(t, s);
+  })(window, document, '_gscq','script','//widgets.getsitecontrol.com/28494/script.js');
+</script>
+    
 </h:head>
 
 <body>
@@ -117,7 +125,7 @@
                 <!-- Post Content -->
                 <p class="lead"><h:outputText escape="false" value="#{adminController.p.postIntro}" /></p>
                 <p><h:outputText escape="false" value="#{adminController.p.postMessage}" /></p>
-             
+                      
                 <hr />
 
                 <!-- Blog Comments -->
@@ -134,7 +142,8 @@
                         </h:form>
                  
                 </div>
-
+                 <div class='shareaholic-canvas' data-app='share_buttons' data-app-id=''></div> 
+                 
                 <hr />
 
                 <!-- Posted Comments -->
@@ -151,6 +160,7 @@
                         </h4>
                        #{co.message}
                     </div>
+                    
                 </div>
                 </ui:repeat>
              
