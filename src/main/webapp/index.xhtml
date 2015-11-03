@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+
+        <title>Eves Intimate | Home</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+        <!-- Custom CSS -->
+        <link href="css/blog-home.css" rel="stylesheet" />
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css" />
+
+
+    </h:head>
+
+    <h:body>
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Eves Initimate</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="#">Home</a>
+                        </li>
+                       
+                        <li>
+                            <h:link outcome="products_pr" value="Shop" />
+                        </li>
+
+                        <li class="dropdown ">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Explore<span class="caret"></span></a>
+                              
+                            <ul class="dropdown-menu">
+                              
+                                 <ui:repeat value="#{dashboardController.sectionList}" var="sec">
+                                     <h:form>
+                                         <li id="dude" style="display: box; padding: 3px 20px;" ><h:commandLink action="#{adminController.viewSection(sec)}" value="#{sec.sectionName}" /></li> 
+                                    </h:form>
+                                 </ui:repeat>
+                              
+                            </ul>
+                             
+                        </li>
+
+                        <li>
+                            <a href="#{request.contextPath}/w/about_us.xhtml">About</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+
+        <!-- Page Content -->
+        <div class="container">
+
+            <div class="row">
+	<!-- Title -->
+    <ol class="breadcrumb"><li class="active"><a href="#">Home</a></li></ol>
+  </div>
+            
+            <div class="row">
+
+
+
+
+                <!-- Blog Entries Column -->
+                <div class="col-md-8">
+
+                    <h1 class="page-header">
+                        Eve's Initimate Secrets
+                        <small></small>
+                    </h1>
+
+
+                    <ui:repeat var="po" value="#{dashboardController.postList}">
+
+                        <!-- First Blog Post -->
+                        <h2>
+                            <h:outputText value="#{po.postTitle}" escape="false" />
+                            </h2>
+                        <p class="lead">
+                            by <a href="index.php">Omotayo eve</a>
+                        </p>
+                        <p><label class="label label-danger " >#{po.sectionId.sectionName}</label></p>
+                        <p><span class="glyphicon glyphicon-time"></span> Posted on #{dashboardController.blogDate(po.timeCreated)}</p>
+                        <hr />
+                        <h:graphicImage  class="img-responsive" value="/image?post_id=#{po.id}" />
+                        <hr />
+                        <p ><h:outputText value="#{po.postIntro}" escape="false" /></p>
+                        <h:form>
+                            <h:commandButton  action="#{adminController.viewPost(po)}" class=" btn btn-primary" value="Read more " />
+                        </h:form>
+                        <hr />
+
+                    </ui:repeat>
+
+
+
+
+                    <!-- Pager -->
+                    <h:form>
+                    <ul class="pager">
+                        <li class="previous #{dashboardController.start == 0 ? 'disabled' : 'enabled'}">
+                            <h:commandLink disabled="#{dashboardController.start == 0}" action="#{dashboardController.previousPage}" value="Older" />
+                        </li>
+                        <li  class="next #{dashboardController.start + dashboardController.end >= dashboardController.totalActivePost ? 'disabled' : 'enabled'}">
+                            <h:commandLink disabled="#{dashboardController.start + dashboardController.end >= dashboardController.totalActivePost}" action="#{dashboardController.nextPage}" value="Next" />
+                       
+                        </li>
+                    </ul>
+                        </h:form>
+                </div>
+
+                <!-- Blog Sidebar Widgets Column -->
+                <div class="col-md-4">
+
+                    <!-- Blog Search Well -->
+                    <div class="well">
+                        <h4>Blog Search</h4>
+                        <div class="input-group">
+                            <input type="text" class="form-control" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                        </div>
+                        <!-- /.input-group -->
+                    </div>
+
+                    <!-- Blog Categories Well -->
+                    <div class="well">
+                        <h4>Eve's Intimate Explore</h4>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <ul class="list-unstyled">
+                                    <ui:repeat var="psio" value="#{dashboardController.sectionList}">
+                                          <li><a href="#">#{psio.sectionName}</a>
+                                    </li>
+                                    </ui:repeat>
+                                  
+                                  
+                                </ul>
+                            </div>
+                            <!-- /.col-lg-6 -->
+                           
+                            <!-- /.col-lg-6 -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+
+                    <!-- Side Widget Well -->
+                    <div class="well">
+                        <h4>Popular Post</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- /.row -->
+
+            <hr />
+
+       
+
+        </div>
+        <!-- /.container -->
+
+             <!-- Footer -->
+            <footer class="footer-distributed">
+
+            <div class="footer-left">
+
+                <h3>  <img class='img-responsive' width="120" height="120" src='img/evisroom8.png' /> 
+                </h3>
+
+                <p class="footer-links">
+                    <a href="#">Home</a>
+                    ·
+                    <a href="#{request.contextPath}/w/products_pr.xhtml">Shop</a>
+                    ·
+
+                    <a href="#{request.contextPath}/w/about_us.xhtml">About</a>
+                    ·
+
+                </p>
+
+                <p class="footer-company-name"> &copy; 2015</p>
+            </div>
+
+            <div class="footer-center">
+
+                <div>
+                    <i class="fa fa-map-marker"></i>
+                    <p><span>12, ashimowu street new garage</span> Lagos, NGR</p>
+                </div>
+
+                <div>
+                    <i class="fa fa-phone"></i>
+                    <p>+23407088812651</p>
+                </div>
+
+                <div>
+                    <i class="fa fa-envelope"></i>
+                    <p><a href="mailto:support@.com">support@room.com</a></p>
+                </div>
+
+            </div>
+
+            <div class="footer-right">
+
+                <p class="footer-company-about">
+                    <span>About the company</span>
+                    Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+                </p>
+
+                <div class="footer-icons">
+
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                    <a href="#"><i class="fa fa-github"></i></a>
+
+                </div>
+
+            </div>
+
+        </footer>
+        <!-- jQuery -->
+        <script src="js/jquery.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+
+
+
+    </h:body>
+</html>
+

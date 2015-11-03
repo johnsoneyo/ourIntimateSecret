@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+   
+<h:head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Shop Item</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link href="css/shop-item.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css" />
+ 
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+ <script src="js/jquery.js"></script>
+
+    <script>
+          $(document).ready(function() {
+
+                $("#rem").hide();
+
+            });
+    </script>
+</h:head>
+
+<h:body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Eves intimate</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                     <li>
+                         <a href="#{request.contextPath}">Home</a>
+                    </li>
+                    <li>
+                      <a href="#{request.contextPath}/w/about_us.xhtml">About</a>
+                    </li>
+                  
+                    <li> <h:link outcome="place_order" rendered="#{adminController.cartItems.size()>0}" style="color: #d43f3a; font-weight: bold" value="View Cart" ><span style="background-color: red" class="badge">#{adminController.cartItems.size()}</span></h:link></li>
+                    
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <p class="lead">Eves intimate</p>
+                <div class="list-group">
+                    
+                    <ui:repeat var="cat" value="#{dashboardController.categories}">
+                        <h:form>
+                        <h:commandLink value="#{cat.name}" class="list-group-item" />
+                        
+                        </h:form>
+                    </ui:repeat>
+                     </div>
+                 <iframe border='0' frameborder='0' height='600px' width='100%' src="http://twitframe.com/show?url=https://twitter.com/sotak/status/501776380150185984"></iframe>
+             
+            </div>
+
+            <div class="col-md-9">
+                <h:form>
+                <div class="thumbnail">
+                    <h:graphicImage width="800" height="300"   value="/productImage?product_id=#{adminController.product.id}" />
+                         
+                    <div class="caption-full">
+                        <h4 class="pull-right"> #{adminController.product.price}</h4>
+                        <h4><a href="#"> #{adminController.product.name}</a>
+                        </h4>
+                       <p>#{adminController.product.description}</p>
+                       <p><h:commandLink action="#{adminController.addItemToCart(adminController.product, 1)}" class="btn btn-primary" value="add to basket" /></p>
+                      
+                        <p><h:outputText escape="false" value="#{adminController.product.descriptionP}" /></p>
+                    </div>
+                    <div class="ratings">
+                        <p class="pull-right"><h:outputText />#{dashboardController.remarkList(adminController.product).size()} review(s)</p>
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            4.0 stars
+                        </p>
+                    </div>
+                </div>
+
+                <div class="well">
+
+                    <div class="text-right">
+                        <a onclick="$('#rem').show()" class="btn btn-success">Leave a Review</a>
+                    </div>
+
+                    <hr />
+
+                    <ui:repeat value="#{dashboardController.remarkList(adminController.product)}" var="rem">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            #{rem.user}
+                            <span class="pull-right">#{dashboardController.blogDate(rem.timeCreated)}</span>
+                            <p><h:outputText escape="false" value="#{rem.remark}" /></p>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    </ui:repeat>
+                 
+
+                </div>
+                    
+                 <div id="rem" class="well">
+                    <h4>Leave a Comment:</h4>
+
+                        <div class="form-group">
+                            <h:inputTextarea value="#{dashboardController.prm.remark}"  class="form-control" rows="3" p:placeholder="Not more than 500 characters..."/> 
+                        </div><h:commandLink action="#{dashboardController.leaveComment}" value="Submit" class="btn btn-primary"  />
+
+                 
+                </div>   
+                </h:form>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+    <div class="container">
+
+        <hr />
+
+    
+
+    </div>
+    <!-- /.container -->
+
+       <footer class="footer-distributed">
+
+            <div class="footer-left">
+
+                <h3>  <img class='img-responsive' width="120" height="120" src='img/evisroom8.png' /> 
+                </h3>
+
+                <p class="footer-links">
+                    <a href="#">Home</a>
+                    ·
+                    <a href="#{request.contextPath}/w/products_pr.xhtml">Product</a>
+                    ·
+
+                    <a href="#{request.contextPath}/w/about_us.xhtml">About</a>
+                    ·
+
+                </p>
+
+                <p class="footer-company-name"> 2015</p>
+            </div>
+
+            <div class="footer-center">
+
+                <div>
+                    <i class="fa fa-map-marker"></i>
+                    <p><span>12, ashimowu street new garage</span> Lagos, NGR</p>
+                </div>
+
+                <div>
+                    <i class="fa fa-phone"></i>
+                    <p>+23407088812651</p>
+                </div>
+
+                <div>
+                    <i class="fa fa-envelope"></i>
+                    <p><a href="mailto:support@room.com">support@room.com</a></p>
+                </div>
+
+            </div>
+
+            <div class="footer-right">
+
+                <p class="footer-company-about">
+                    <span>About the company</span>
+                    Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+                </p>
+
+                <div class="footer-icons">
+
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                    <a href="#"><i class="fa fa-github"></i></a>
+
+                </div>
+
+            </div>
+
+        </footer>
+    
+    <!-- jQuery -->
+  
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</h:body>    
+    
+    
+</html>

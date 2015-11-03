@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <link rel="icon" href="../../favicon.ico" />
+
+        <title>Manage post</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="../css/bootstrap.min.css" rel="stylesheet" />
+
+        <!-- Custom styles for this template -->
+        <link href="../css/dashboard.css" rel="stylesheet" />
+
+        <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+        <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Eve's Intimate</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                   
+                              <h:form>
+            <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><h:commandLink action="#{adminController.logout}" class="glyphicon glyphicon-log-out" /></li>
+         
+          </ul>
+           </h:form> 
+                    
+                    <form class="navbar-form navbar-right">
+                        <input type="text" class="form-control" placeholder="Search..." />
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3 col-md-2 sidebar">
+                    <ul class="nav nav-sidebar">
+                          <li ><h:link value="Analytics" outcome="admin_home" /></li>
+            <li class="active"><h:link outcome="manage_post" value="Manage posts" /></li>
+            <li><h:link outcome="sections" value="Sections" /></li>
+                         <li><h:link outcome="manage_product" value="Manage products" /></li>
+                         <li><h:link outcome="orders" value=" View Order" /></li>
+                    </ul>
+
+
+                </div>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    <h1 class="page-header">Manage Posts</h1>
+
+                  
+                        <h:link outcome="new_post" class="btn btn-primary " value="New Post" />
+                 
+                    <hr></hr>
+                    
+                    <h:form>
+                    <div class='row'>
+                        <div class="col-md-12">
+
+                            <h:dataTable value="#{dashboardController.postList}" var="po" class="table table-hover" >
+                                <h:column>
+                                    <f:facet name="header">ID</f:facet>
+
+                                    <h:outputText value="#{po.id}" />
+                                </h:column>
+                                
+                                
+                                 <h:column>
+                                    <f:facet name="header">Section</f:facet>
+                                    <h:outputText class="label label-info" value="#{po.sectionId.sectionName}" />
+                                </h:column>
+
+                                <h:column>
+                                    <f:facet name="header">Title</f:facet>
+                                    <h:outputText escape="false" value="#{po.postTitle}" />
+                                </h:column>
+
+                                <h:column>
+                                    <f:facet name="header">Status</f:facet>
+                                    <h:outputText class="#{po.isActive ? 'label label-success':'label label-danger'}" value="#{po.isActive? 'Active':'Inactive'}" />
+                                </h:column>
+
+                                <h:column>
+                                    <f:facet name="header">Time created</f:facet>
+                                    <h:outputText value="#{dashboardController.blogDate(po.timeCreated)}" />
+                                </h:column>
+
+
+                                <h:column>
+                                    <f:facet name="header">
+                                        Actions
+                                    </f:facet>
+
+                                    <div class="dropdown">
+                                        <button type="button" class="btn btn-primary " id="dropdownMenu1"
+                                                data-toggle="dropdown">
+                                            <span class="glyphicon glyphicon-cog"></span>
+
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
+
+                                            <li role="presentation">
+                                                <h:commandLink action="#{dashboardController.suspend(po)}" value="#{po.isActive? 'Suspend':'Unsuspend'}" />
+                                            </li>
+                                            <li role="presentation">
+                                               
+                                               <h:commandLink action="#{adminController.editPostScreen(po)}" value="Edit" />
+                                           
+                                            </li>
+
+
+                                        </ul>
+                                    </div>
+
+
+
+                                </h:column>      
+                            </h:dataTable>
+
+                        </div>
+
+
+                    </div>
+                        
+                        
+                        <div class='row'>
+                            <h1>Manage comments</h1>
+                            <hr />
+                          
+                            <h:dataTable class='table table-hover' value='#{dashboardController.allComments}' var='com' >
+                                <h:column>
+                                    <f:facet name='header' >User</f:facet>
+                                    <h:outputText value='#{com.user}' />
+                                </h:column>
+                                
+                                 <h:column>
+                                    <f:facet name='header' >Post Topic</f:facet>
+                                    <h:outputText escape="false" value='#{com.postId.postTitle}' />
+                                </h:column>
+                                  <h:column>
+                                    <f:facet name='header' >Message</f:facet>
+                                    <h:outputText value='#{com.message}' />
+                                </h:column>
+                                
+                                 <h:column>
+                                    <f:facet name='header' >Time entered</f:facet>
+                                    <h:outputText value='#{dashboardController.blogDate(com.timeCreated)}' />
+                                </h:column>
+                                
+                                 <h:column>
+                                     <f:facet name='header' >Delete</f:facet>
+                                     <h:commandButton action="#{dashboardController.deletePost(com)}" class='btn btn-primary' value='Delete' />
+                                </h:column>
+                                
+                            </h:dataTable>
+                        </div>     
+                     </h:form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+        <script src="../../assets/js/vendor/holder.min.js"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    </body>
+
+</html>

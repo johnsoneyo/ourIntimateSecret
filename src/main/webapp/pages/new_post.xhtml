@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <link rel="icon" href="../../favicon.ico" />
+
+        <title>New post</title>
+
+        <!-- Bootstrap core CSS -->
+
+        <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+        <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+        <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" />
+        <link href="../css/editor.css" type="text/css" rel="stylesheet"/>
+        <link href="../css/eve.css" rel="stylesheet" />
+
+        <!-- Custom styles for this template -->
+        <link href="../css/dashboard.css" rel="stylesheet" />
+
+        <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+        <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+
+                $("#txtEditor").Editor();
+
+            });
+        </script>
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Eve's Intimate</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <h:form>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#">Settings</a></li>
+                            <li><a href="#">Profile</a></li>
+                            <li><h:commandLink action="#{adminController.logout}" class="glyphicon glyphicon-log-out" /></li>
+
+                        </ul>
+                    </h:form> 
+                    <form class="navbar-form navbar-right">
+                        <input type="text" class="form-control" placeholder="Search..." />
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+
+
+            <div class="row">
+
+                <h:messages />
+
+                <div class="col-sm-3 col-md-2 sidebar">
+                    <ul class="nav nav-sidebar">
+                        <li ><h:link value="Analytics" outcome="admin_home" /></li>
+                        <li class="active"><h:link outcome="manage_post" value="Manage posts" /></li>
+                        <li><h:link outcome="sections" value="Sections" /></li>
+                        <li><h:link outcome="manage_product" value="Manage products" /></li>
+                        <li><h:link outcome="orders" value=" View Order" /></li>
+                    </ul>
+
+                </div>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    <h1 class="page-header">New Post</h1>
+                     <div class="alert alert-success">
+                                        <a href="#" class="close" data-dismiss="alert">×</a>
+                                      use the wysiwyg editor and paste code in the message box
+                                    </div>
+                    <div class="row">
+                        <h:messages style="list-style-type:  none" class="alert alert-danger" />
+
+                        <div class="col-md-12">
+                            <textarea id="txtEditor"></textarea> 
+                        </div>
+                    </div>  
+                    <hr />
+
+                    <div class='row'>
+                        <div class="col-md-12">
+
+                            <h:form  enctype="multipart/form-data" class="form-horizontal" >
+
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Title</label>
+                                    <div class="col-sm-10">
+                                        <h:inputText value="#{dashboardController.po.postTitle}" p:placeholder="Title of the post" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">Introductory Message</label>
+                                    <div class="col-sm-10">
+                                        <h:inputTextarea value="#{dashboardController.po.postIntro}" p:placeholder="Introductory message... " class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">Section</label>
+                                    <div class="col-sm-10">
+                                        <h:selectOneMenu value="#{dashboardController.sec}" class="form-control" >
+                                            <f:selectItems itemLabel="#{sec.sectionName}" var="sec" value="#{dashboardController.sectionList}" />
+                                            <f:converter converterId="sect" />
+                                        </h:selectOneMenu> 
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">Post Message</label>
+                                    <div class="col-sm-10">
+                                        <h:inputTextarea required="true" requiredMessage="Please fill field" value="#{dashboardController.po.postMessage}" rows="7" p:placeholder="Not more than 500 words " class="form-control" />
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">Image</label>
+                                    <div class="col-sm-10">
+                                        <span class="btn btn-default btn-file">Choose Image
+                                            <h:inputFile required="true" requiredMessage="You did not select a file" value="#{dashboardController.part}"  id="file" />
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <h:commandButton action="#{dashboardController.createPost}" class="btn btn-primary" value="Create post" />
+                                    </div>
+                                </div>
+
+                            </h:form>
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+
+        <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+        <script src="../js/editor.js"></script>
+        <script src="../../assets/js/vendor/holder.min.js"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    </body>
+
+</html>

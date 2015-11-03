@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+
+        <title>New Order</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="../css/bootstrap.min.css" rel="stylesheet" />
+        <link href="../css/eve.css" rel="stylesheet" />
+        <link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css" />
+ 
+        <!-- Custom CSS -->
+        <link href="../css/blog-post.css" rel="stylesheet" />
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </h:head>
+
+    <body >
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Eve's intimate</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="#{request.contextPath}">Home</a>
+                        </li>
+                      
+                        <li>
+                            <h:link outcome="products_pr" value="Products" />
+                        </li>
+
+                        <li class="dropdown ">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Explore<span class="caret"></span></a>
+
+                            <ul class="dropdown-menu">
+
+                                <ui:repeat value="#{dashboardController.sectionList}" var="sec">
+                                    <h:form>
+                                        <li id="dude" style="display: box; padding: 3px 20px;" ><h:commandLink action="#{adminController.viewSection(sec)}" value="#{sec.sectionName}" /></li> 
+                                    </h:form>
+                                </ui:repeat>
+                              
+                            </ul>
+
+                        </li>
+
+                        <li>
+                            <a href="#{request.contextPath}/w/about_us.xhtml">About</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+
+
+        <!-- Page Content -->
+        <div class="container" style="margin-top:20px;">
+            <div class="row">
+                <!-- Title -->
+                <ol class="breadcrumb"><li><a href="#">Home</a></li><li >Products</li><li class="active" ><h:link  value="Place Order" /></li></ol>
+            </div>
+            <div class="row">
+              
+                <div class="col-md-12">
+                    <div class="container-fluid">
+
+                        <h:form prependId="false" class="form-horizontal" >
+
+
+
+                            <legend>Shipping Form</legend>
+
+
+
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <div class="alert alert-success">
+                                        <a href="#" class="close" data-dismiss="alert">×</a>
+                                       Please fill the order form below
+                                    </div>
+                                    
+                                    <h:messages style="list-style: none" class="alert alert-success" />
+                                </div>
+                            </div>
+
+
+                            <div class="form-group ">
+                                <div class="col-md-2">
+                                    <label>Title</label>
+                                 
+                                    <h:selectOneMenu value="#{dashboardController.ord.title}" class="form-control" >
+                                         <f:selectItem itemValue="Mr" />
+                                         <f:selectItem itemValue="Mrs" />
+                                         <f:selectItem itemValue="Ms" />
+                                         <f:selectItem itemValue="Miss" />
+                                    </h:selectOneMenu>
+                                </div><!--/span-->
+                                <div class="col-md-5">
+                                    <label>First Name</label>
+                                    <h:inputText value="#{dashboardController.ord.firstName}" required="true" requiredMessage="please fill your first name"  class="form-control" p:placeholder="Omotayo" />    
+                                </div><!--/span-->
+                                <div class="col-md-5">
+                                    <label>Last Name</label>
+                                    <h:inputText value="#{dashboardController.ord.lastName}" required="true" requiredMessage="please fill your last name" class="form-control" p:placeholder="Soniregun" />    
+                                </div><!--/span-->
+                            </div>
+                            <div class="form-group ">
+                                <div class="col-md-6">
+                                    <label>Email</label>
+                                    <h:inputText required="true" requiredMessage="please fill your email address" value="#{dashboardController.ord.email}" class="form-control" p:placeholder="t.soniregun@evesintimate.com" /> 
+                                </div><!--/span-->
+                                <div class="col-md-6">
+                                    <label>Mode of payment</label>
+                                    <h:selectOneMenu value="#{dashboardController.ord.modeOfPayment}" class="form-control" >
+                                        <f:selectItem itemValue="Payment on delivery" />
+                                       
+                                    </h:selectOneMenu>
+                                </div><!--/span-->
+                            </div><!--/row-->
+                          
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <h:inputText value="#{dashboardController.ord.city}"  class="form-control" p:placeholder="City" />   
+                                </div><!--/span-->
+                                <div class="col-md-6">
+                                    <h:selectOneMenu class="form-control" value="#{dashboardController.state}" >
+                                         <f:selectItem itemValue="Lagos" />
+                                         <f:selectItem itemValue="Abuja" />
+                                         <f:selectItem itemValue="Rivers" />
+                                         <f:selectItem itemValue="Edo" />
+                                         <f:selectItem itemValue="Delta" />
+                                       
+                                         <f:ajax  render="ad1 ad2"  listener="#{dashboardController.stateListener()}" />
+                                    </h:selectOneMenu>   
+                                </div><!--/span-->
+                            </div><!--/row-->           
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <h:inputText value="#{dashboardController.ord.phone}" required="true" requiredMessage="please fill your phone number" class="form-control" p:placeholder="Phone" />   
+                                </div><!--/span-->
+                                <div class="col-md-6">
+                                    <h:selectOneMenu value="#{dashboardController.ord.country}" class="form-control" >
+                                        <f:selectItem itemValue="Nigeria" />
+                                    </h:selectOneMenu>   
+                                </div><!--/span-->
+                            </div><!--/row-->                        
+
+                            <h:panelGroup id="ad1"  layout="block" class="form-group">
+                                <div class="col-md-12">
+                                    <h:outputText rendered="#{dashboardController.showAddress=='Lagos'}" value="Address 1" />
+                                    <h:inputTextarea required="true" requiredMessage="please fill your first address" value="#{dashboardController.ord.addr1}" rendered="#{dashboardController.showAddress=='Lagos'}"   class="form-control" p:placeholder="Street" />    
+                                </div>
+                            </h:panelGroup>
+                            <h:panelGroup id="ad2"  layout="block" class="form-group">
+                                <div class="col-md-12">
+                                    <h:outputText rendered="#{dashboardController.showAddress=='Lagos'}" value="Address 2" />
+                                    <h:inputTextarea required="true" requiredMessage="please fill your second address" value="#{dashboardController.ord.addr2}" rendered="#{dashboardController.showAddress=='Lagos'}"   class="form-control" p:placeholder="Street" />    
+                                </div>
+                            </h:panelGroup>
+
+                            <div class="form-group">
+                                 <div class="col-sm-offset-0 col-sm-12">
+                                     <h:commandButton binding="#{dashboardController.component}" action="#{dashboardController.checkout}"  class="btn btn-primary" value="Send Order  " />
+                                </div>
+                            </div>    
+                            
+
+                        </h:form> 
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+            <footer class="footer-distributed">
+
+            <div class="footer-left">
+
+                <h3>  <img class='img-responsive' width="120" height="120" src='img/evisroom8.png' /> 
+                </h3>
+
+                <p class="footer-links">
+                    <a href="#">Home</a>
+                    ·
+                    <a href="#{request.contextPath}/w/products_pr.xhtml">Product</a>
+                    ·
+
+                    <a href="#{request.contextPath}/w/about_us.xhtml">About</a>
+                    ·
+
+                </p>
+
+                <p class="footer-company-name"> 2015</p>
+            </div>
+
+            <div class="footer-center">
+
+                <div>
+                    <i class="fa fa-map-marker"></i>
+                    <p><span>12, ashimowu street new garage</span> Lagos, NGR</p>
+                </div>
+
+                <div>
+                    <i class="fa fa-phone"></i>
+                    <p>+23407088812651</p>
+                </div>
+
+                <div>
+                    <i class="fa fa-envelope"></i>
+                    <p><a href="mailto:support@room.com">support@room.com</a></p>
+                </div>
+
+            </div>
+
+            <div class="footer-right">
+
+                <p class="footer-company-about">
+                    <span>About the company</span>
+                    Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+                </p>
+
+                <div class="footer-icons">
+
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                    <a href="#"><i class="fa fa-github"></i></a>
+
+                </div>
+
+            </div>
+
+        </footer>
+        
+        <!-- jQuery -->
+        <script src="../js/jquery.js"></script>
+        <script src="../js/ev.js "></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="../js/bootstrap.min.js"></script>
+
+    </body>
+</html>
