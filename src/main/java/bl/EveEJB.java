@@ -220,12 +220,12 @@ public class EveEJB {
         try {
 
             //Test environment
-         //   String masterReportFileName = "/home/johnson3yo/Desktop/shop/evesi.jrxml";
-          //  String subReportFileName = "/home/johnson3yo/Desktop/shop/evis_sub.jrxml";
+            //   String masterReportFileName = "/home/johnson3yo/Desktop/shop/evesi.jrxml";
+            //  String subReportFileName = "/home/johnson3yo/Desktop/shop/evis_sub.jrxml";
 
             //Production environment
-             String masterReportFileName = "/home/ubuntu/jpr/evesi.jrxml";
-             String subReportFileName = "/home/ubuntu/jpr/evis_sub.jrxml";
+            String masterReportFileName = "/home/ubuntu/jpr/evesi.jrxml";
+            String subReportFileName = "/home/ubuntu/jpr/evis_sub.jrxml";
             JRBeanCollectionDataSource beanColDataSource = new JRBeanCollectionDataSource(iList);
 
             JasperReport jasperMasterReport = JasperCompileManager.compileReport(masterReportFileName);
@@ -269,9 +269,9 @@ public class EveEJB {
             JasperDesign jasperDesign = null;
             Map parameters = new HashMap();
             //Test environment
-           //  jasperDesign = JRXmlLoader.load("/home/johnson3yo/Desktop/shop/report2.jrxml");
+            //  jasperDesign = JRXmlLoader.load("/home/johnson3yo/Desktop/shop/report2.jrxml");
             //Production environment
-              jasperDesign = JRXmlLoader.load("/home/ubuntu/jpr/report2.jrxml");
+            jasperDesign = JRXmlLoader.load("/home/ubuntu/jpr/report2.jrxml");
             jasperReport = JasperCompileManager.compileReport(jasperDesign);
             jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JRBeanCollectionDataSource(oList));
             byte[] val = JasperExportManager.exportReportToPdf(jasperPrint);
@@ -286,11 +286,11 @@ public class EveEJB {
     public void comment(Post p, Comment cm) {
 
         String word = wordChecker(cm.getMessage());
-        System.out.println(word);
         cm.setTimeCreated(new Date());
         cm.setPostId(p);
+        cm.setMessage(word);
         cm.setUser(String.valueOf(new Date().getTime()));
-       // em.persist(cm);
+        em.persist(cm);
 
     }
 
@@ -304,21 +304,44 @@ public class EveEJB {
     private String wordChecker(String message) {
         String[] split = message.split("\\s+");
         String new_word = "";
+
         
-        for(int i=0; i<split.length; i++){
-            if(split[i]=="fuck"){
-             split[i]="f**k";
-            new_word.concat(split[i]).concat(" ");
-        }else new_word.concat(split[i]).concat(" ");
-           
+        for (int i = 0; i < split.length; i++) {
+            if (split[i].equalsIgnoreCase("fuck")) {
+               
+                new_word = new_word.concat("f**k").concat(" ");
+             
+            }else if (split[i].equalsIgnoreCase("shit")) {
+              
+                new_word = new_word.concat("s**t").concat(" ");
+                
+            }else if (split[i].equalsIgnoreCase("dick")) {
+              
+                new_word = new_word.concat("d**k").concat(" ");
+              
+            }else 
+            if (split[i].equalsIgnoreCase("pussy")) {
+                new_word = new_word.concat("p***y").concat(" ");
+             
+            }else if (split[i].equalsIgnoreCase("bitch")) {
+              
+                new_word = new_word.concat("b***h").concat(" ");
+               
+            }
             
-        }
-        
-        
-        return new_word;    
+            else {
+              
+                new_word = new_word.concat(split[i]).concat(" ");
+             
+            }
+
+
         }
        
+        return new_word;
+    }
 
+    
     public void login(Admin adm) throws AdminException {
         Query q = em.createQuery("select a from Admin a where a.username = :username and a.password =:password");
         q.setParameter("username", adm.getUsername());
@@ -391,26 +414,26 @@ public class EveEJB {
     }
 
     public List<Post> getSimilarPost(Post p) {
-        
-        String [] post_title = p.getPostTitle().split("\\s+");
+
+        String[] post_title = p.getPostTitle().split("\\s+");
         Set<Post> similarPost = new HashSet();
-        
-        for(int i=0; i<post_title.length; i++){
-            String d =  post_title[i];
+
+        for (int i = 0; i < post_title.length; i++) {
+            String d = post_title[i];
             int word_length = String.valueOf(d).length();
-           if(word_length>=4){
-             Query q = em.createQuery("select p from Post p where p.postTitle like '%"+String.valueOf(d)+"%' ");
-            List<Post> pList = q.getResultList();
-            similarPost.addAll(pList);
-           }
+            if (word_length >= 4) {
+                Query q = em.createQuery("select p from Post p where p.postTitle like '%" + String.valueOf(d) + "%' ");
+                List<Post> pList = q.getResultList();
+                similarPost.addAll(pList);
+            }
         }
         List<Post> pr = new ArrayList(similarPost);
         return pr;
     }
 
     public List<Post> getPopularPost() {
-      List<Post>pList = em.createQuery("select p.postId from PostViews p group by "
-              + "p.postId order by count(p.id) desc ").setMaxResults(5).getResultList();
-     return pList;
+        List<Post> pList = em.createQuery("select p.postId from PostViews p group by "
+                + "p.postId order by count(p.id) desc ").setMaxResults(5).getResultList();
+        return pList;
     }
 }

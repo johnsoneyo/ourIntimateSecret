@@ -84,8 +84,7 @@ public class DashboardController {
     private AdminController logc;
 
     public int getStart() {
-        System.out.println("Start is "+start);
-        return start;
+       return start;
     }
 
     public void setStart(int start) {
@@ -462,6 +461,7 @@ public class DashboardController {
     }
 
     public String comment() {
+        System.out.println("Method invoked");
         Post p = this.logc.getP();
         ev.comment(p, cm);
         return "view_post";
