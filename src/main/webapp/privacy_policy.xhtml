@@ -7,7 +7,7 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-   <h:head>
+    <h:head>
 
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -15,10 +15,11 @@ and open the template in the editor.
         <meta name="description" content="" />
         <meta name="author" content="" />
 
-        <title>Eves Intimate | Error page</title>
+        <title>Our Intimate Secrets | Privacy Policy</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet" />
+        <link href="css/blog.css" rel="stylesheet" />
         <link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css" />
 
         <!-- Custom CSS -->
@@ -56,29 +57,32 @@ and open the template in the editor.
                         <li>
                             <a href="#">Home</a>
                         </li>
+
                         <li>
-                            <a href="#">Services</a>
-                        </li>
-                        <li>
-                            <h:link outcome="products" value="Products" />
+                            <h:link outcome="products_pr" value="Shop" />
                         </li>
 
                         <li class="dropdown ">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Explore<span class="caret"></span></a>
-                              
+
                             <ul class="dropdown-menu">
-                              
-                             
-                                <li role="separator" class="divider"></li>
-                                <li class="dropdown-header">Nav header</li>
-                                <li><a href="#">Separated link</a></li>
-                                <li><a href="#">One more separated link</a></li>
+
+                                <ui:repeat value="#{dashboardController.sectionList}" var="sec">
+                                    <h:form>
+                                        <li id="dude" style="display: box; padding: 3px 20px;" ><h:commandLink action="#{adminController.viewSection(sec)}" value="#{sec.sectionName}" /></li> 
+                                    </h:form>
+
+
+                                </ui:repeat>
+                                <br />
+                                <li><a href="#{request.contextPath}/w/privacy_policy.xhtml">Privacy Policy</a></li> 
+
                             </ul>
-                             
+
                         </li>
 
                         <li>
-                            <a href="#">Contacts</a>
+                            <a href="#{request.contextPath}/w/about_us.xhtml">About</a>
                         </li>
                     </ul>
                 </div>
@@ -88,28 +92,85 @@ and open the template in the editor.
         </nav>
 
         <!-- Page Content -->
-    
+
         <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="error-template">
-                <h1>
-                    Oops!</h1>
-                <h2>
-                    404 Not Found</h2>
-                <div class="error-details">
-                    Sorry, an error has occured, Requested page not found!
+            <div class="row">
+
+                <div class="blog-header">
+                    <h1 class="blog-title">Privacy Policy</h1>
+                    <p class="lead blog-description">Read disclaimer information</p>
                 </div>
-                <div class="error-actions">
-                    <a href="http://www.jquery2dotnet.com" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
-                        Take Me Home </a><a href="http://www.jquery2dotnet.com" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> Contact Support </a>
+
+                <div class="col-sm-12 blog-main">
+
+                    <div class="blog-post">
+                        <h2 class="blog-post-title">Disclaimer</h2>
+                        <p class="blog-post-meta">January 1, 2014 by <a href="#">Johnson Eyo</a></p>
+
+                        <p>
+
+                            All material provided on this website is provided for informational or educational purposes only. 
+
+                            Consult a physician/doctor regarding the applicability of any opinions or recommendations with 
+
+                            respect to your symptoms or medical conditions. Click Here For Additional Information</p>
+
+                        <br />
+                        <h2 class="blog-post-title">External Links Policy</h2>
+                        <p>The web site may contain links to many other web sites. cannot guarantee the accuracy of 
+
+                            information found at any linked site. Links to or from external web sites sites not owned or 
+
+                            controlled by does not constitute an endorsement by or any of its employees of the sponsors of 
+
+                            these sites or the products or information presented there.</p>
+
+                        <h2 class="blog-post-title">Medical Disclaimer</h2>
+
+                        <p>
+
+                            THIS WEB SITE IS NOT DESIGNED TO, AND DOES NOT, PROVIDE MEDICAL 
+
+                            ADVICE. ALL CONTENT ("CONTENT"), INCLUDING TEXT, GRAPHICS, IMAGES AND 
+
+                            INFORMATION AVAILABLE ON OR THROUGH THIS WEB SITE ARE FOR GENERAL 
+
+                            INFORMATIONAL PURPOSES ONLY. 
+
+                            THE CONTENT IS NOT INTENDED TO BE A SUBSTITUTE FOR PROFESSIONAL 
+
+                            MEDICAL ADVICE, DIAGNOSIS OR TREATMENT. NEVER DISREGARD 
+
+                            PROFESSIONAL MEDICAL ADVICE, OR DELAY IN SEEKING IT, BECAUSE OF 
+
+                            SOMETHING YOU HAVE READ ON THIS WEB SITE. NEVER RELY ON INFORMATION 
+
+                            ON THIS WEB SITE IN PLACE OF SEEKING PROFESSIONAL MEDICAL ADVICE. 
+
+                            IS NOT RESPONSIBLE OR LIABLE FOR ANY ADVICE, COURSE OF TREATMENT, 
+
+                            DIAGNOSIS OR ANY OTHER INFORMATION, SERVICES OR PRODUCTS THAT YOU 
+
+                            OBTAIN THROUGH THIS SITE. YOU ARE ENCOURAGED TO CONFER WITH YOUR 
+
+                            DOCTOR WITH REGARD TO INFORMATION CONTAINED ON OR THROUGH THIS 
+
+                            WEB SITE. AFTER READING ARTICLES OR OTHER CONTENT FROM THIS WEB SITE, 
+
+                            YOU ARE ENCOURAGED TO REVIEW THE INFORMATION CAREFULLY WITH YOUR 
+
+                            PROFESSIONAL HEALTHCARE PROVIDER.</p>
+
+                    </div><!-- /.blog-post -->
+
+
+
                 </div>
+
             </div>
         </div>
-    </div>
-</div>
 
-         <footer class="footer-distributed">
+        <footer class="footer-distributed">
 
             <div class="footer-left">
 
