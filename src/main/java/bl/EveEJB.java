@@ -285,11 +285,12 @@ public class EveEJB {
 
     public void comment(Post p, Comment cm) {
 
-        //  String word = wordChecker(cm.getMessage());
+        String word = wordChecker(cm.getMessage());
+        System.out.println(word);
         cm.setTimeCreated(new Date());
         cm.setPostId(p);
         cm.setUser(String.valueOf(new Date().getTime()));
-        em.persist(cm);
+       // em.persist(cm);
 
     }
 
@@ -300,17 +301,24 @@ public class EveEJB {
         return q.getResultList();
     }
 
-//    private String wordChecker(String message) {
-//        char[] msg_char = message.toCharArray();
-//
-//        for (int i = 0; i < msg_char.length; i++) {
-//            
-//         
-//            
-//           }
-//            
-//        }
-    //   }
+    private String wordChecker(String message) {
+        String[] split = message.split("\\s+");
+        String new_word = "";
+        
+        for(int i=0; i<split.length; i++){
+            if(split[i]=="fuck"){
+             split[i]="f**k";
+            new_word.concat(split[i]).concat(" ");
+        }else new_word.concat(split[i]).concat(" ");
+           
+            
+        }
+        
+        
+        return new_word;    
+        }
+       
+
     public void login(Admin adm) throws AdminException {
         Query q = em.createQuery("select a from Admin a where a.username = :username and a.password =:password");
         q.setParameter("username", adm.getUsername());
