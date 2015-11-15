@@ -89,6 +89,21 @@ public class AdminController {
         this.product = product;
     }
     
+      private int postId;
+
+    public int getPostId() {
+        return postId;
+    }
+
+    public void setPostId(int postId) {
+        this.postId = postId;
+    }
+     
+    public String onload(int post_id){
+        System.out.println("Invoked ");
+      this.p = ev.findPost(post_id);
+       return "";
+    }
     
 
     public List<Post> getSectionPostList() {
@@ -161,7 +176,7 @@ public class AdminController {
         pv.setPostId(p);
         ev.recordView(pv);
         this.p = p;
-        return "view_post";
+        return "view_post?post_id="+p.getId()+"&faces-redirect=true";
     }
 
     public String viewSection(Section s) {

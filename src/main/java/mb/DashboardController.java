@@ -83,6 +83,23 @@ public class DashboardController {
     @ManagedProperty(value = "#{adminController}")
     private AdminController logc;
 
+     private int postId;
+
+    public int getPostId() {
+        return postId;
+    }
+
+    public void setPostId(int postId) {
+        this.postId = postId;
+    }
+     
+    public String onload(int post_id){
+        System.out.println("Post id "+post_id);
+      po = ev.findPost(post_id);
+       return "";
+    }
+     
+    
     public int getStart() {
        return start;
     }

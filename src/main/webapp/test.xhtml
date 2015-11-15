@@ -37,61 +37,18 @@
     t.async=1;t.src=e;s=i.getElementsByTagName(g)[0];s.parentNode.insertBefore(t, s);
   })(window, document, '_gscq','script','//widgets.getsitecontrol.com/28494/script.js');
 </script>
- 
-      
+    
    <f:metadata>
-            <f:viewParam id="id" name="post_id" value="#{adminController.postId}" required="true" />
-            <f:viewAction action="#{adminController.onload(adminController.postId)}" />
-     </f:metadata>       
+            <f:viewParam id="id" name="post_id" value="#{dashboardController.postId}" required="true" />
+            <f:viewAction action="#{dashboardController.onload(dashboardController.postId)}" />
+     </f:metadata>    
+      
 </h:head>
 
-<body>
+<h:body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Eve's intimate</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                   <li>
-                            <a href="#{request.contextPath}">Home</a>
-                        </li>
-                       
-                        <li>
-                            <a href="#{request.contextPath}/w/products_pr.xhtml">Products</a>
-                        </li>
-                    
-                      <li class="dropdown ">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Explore<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                              <ui:repeat value="#{dashboardController.sectionList}" var="sec">
-                                     <h:form>
-                                         <li id="dude" style="display: box; padding: 3px 20px;" ><h:commandLink action="#{adminController.viewSection(sec)}" value="#{sec.sectionName}" /></li> 
-                                    </h:form>
-                                 </ui:repeat>
-                             
-                            </ul>
-                        </li>
-                        
-                         <li>
-                            <a href="#{request.contextPath}/w/about_us.xhtml">About</a>
-                        </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+  
 
     <!-- Page Content -->
     <div class="container">
@@ -109,7 +66,7 @@
                 <!-- Blog Post -->
 
                 <!-- Title -->
-                <h1><h:outputText escape="false" value="#{adminController.p.postTitle}" /></h1>
+                <h1><h:outputText escape="false" value="#{dashboardController.po.postTitle}" /></h1>
 
                 <!-- Author -->
                 <p class="lead">
@@ -119,18 +76,16 @@
                 <hr />
 
                 <!-- Date/Time -->
-                <p><span class="glyphicon glyphicon-time"></span> Posted on #{dashboardController.blogDate(adminController.p.timeCreated)}</p>
-
-                <hr />
+               
 
                 <!-- Preview Image -->
-               <h:graphicImage class="img-responsive" value="/image?post_id=#{adminController.p.id}" />
+               <h:graphicImage class="img-responsive" value="/image?post_id=#{dashboardController.po.id}" />
 
                 <hr />
 
                 <!-- Post Content -->
-                <p class="lead"><h:outputText escape="false" value="#{adminController.p.postIntro}" /></p>
-                <p><h:outputText escape="false" value="#{adminController.p.postMessage}" /></p>
+                <p class="lead"><h:outputText escape="false" value="#{dashboardController.po.postIntro}" /></p>
+                <p><h:outputText escape="false" value="#{dashboardController.po.postMessage}" /></p>
                       
                 <hr />
 
@@ -155,21 +110,7 @@
                 <!-- Posted Comments -->
 
                 <!-- Comment -->
-                <ui:repeat var="co" value="#{dashboardController.comments(adminController.p)}">
-                <div style="margin-bottom: 10px;" class="media">
-                    <a class="pull-left" href="#">
-                        <img class="media-object" src="http://placehold.it/64x64" alt="" />
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">#{co.user}
-                            <small>#{dashboardController.blogDate(co.timeCreated)}</small>
-                        </h4>
-                       #{co.message}
-                    </div>
-                    
-                </div>
-                </ui:repeat>
-             
+            
 
             </div>
 
@@ -215,7 +156,7 @@
                        <div class="row">
                         <div class="col-lg-12">
                            <h:form>
-                            <ui:repeat value="#{dashboardController.getSimilarPost(adminController.p)}" var='p' > 
+                            <ui:repeat value="#{dashboardController.getSimilarPost(dashboardController.po)}" var='p' > 
                          <ul class="media-list main-list">
 			  <li class="media">
 			    <a class="pull-left" href="#">
@@ -313,6 +254,6 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
-</body>
+</h:body>
     
 </html>

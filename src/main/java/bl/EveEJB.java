@@ -436,4 +436,9 @@ public class EveEJB {
                 + "p.postId order by count(p.id) desc ").setMaxResults(5).getResultList();
         return pList;
     }
+
+    public Post findPost(int post_id) {
+       
+     return em.find(Post.class, post_id);
+    }
 }
