@@ -49,21 +49,17 @@ and open the template in the editor.
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Eves Initimate</a>
+                    <a class="navbar-brand" href="#">Our Initimate Secret</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="#">Home</a>
-                        </li>
-
-                        <li>
-                            <h:link outcome="products_pr" value="Shop" />
+                            <a href="#{request.contextPath}">Home</a>
                         </li>
 
                         <li class="dropdown ">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Explore<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Discover Secrets<span class="caret"></span></a>
 
                             <ul class="dropdown-menu">
 
@@ -71,8 +67,8 @@ and open the template in the editor.
                                     <h:form>
                                         <li id="dude" style="display: box; padding: 3px 20px;" ><h:commandLink action="#{adminController.viewSection(sec)}" value="#{sec.sectionName}" /></li> 
                                     </h:form>
-
-
+                                  
+                                 
                                 </ui:repeat>
                                 <br />
                                 <li><a href="#{request.contextPath}/w/privacy_policy.xhtml">Privacy Policy</a></li> 
@@ -81,8 +77,20 @@ and open the template in the editor.
 
                         </li>
 
+                          <li>
+                            <h:link outcome="products_pr" value="Shop" />
+                        </li>
+                        
+                         <li>
+                            <a href="#{request.contextPath}/w/about_us.xhtml">Share with Tayo</a>
+                        </li>
+                        
                         <li>
-                            <a href="#{request.contextPath}/w/about_us.xhtml">About</a>
+                            <a href="#{request.contextPath}/w/about_us.xhtml">About me</a>
+                        </li>
+                        
+                         <li>
+                            <a href="#{request.contextPath}/w/about_us.xhtml">Contact me</a>
                         </li>
                     </ul>
                 </div>

@@ -18,7 +18,7 @@ and open the template in the editor.
         <meta name="author" content="" />
         <link rel="icon" href="../../favicon.ico" />
 
-        <title>Manage post</title>
+        <title>Manage product</title>
 
         <!-- Bootstrap core CSS -->
         <link href="../css/bootstrap.min.css" rel="stylesheet" />
@@ -141,7 +141,10 @@ and open the template in the editor.
 
                                 </h:column>     
                                 
-                                
+                                  <h:column>
+                                      <f:facet name="header"><i class="glyphicon glyphicon-remove"></i></f:facet>
+                                      <h:commandButton rendered="#{dashboardController.canDelete(po)}" action="#{dashboardController.removeProduct(po)}" value="Delete" class="btn btn-danger" />
+                                </h:column>
                              
                             </h:dataTable>
 

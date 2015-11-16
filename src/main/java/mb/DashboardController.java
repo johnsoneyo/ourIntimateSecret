@@ -74,7 +74,7 @@ public class DashboardController {
     @PostConstruct
     public void getPosts() {
         showAddress = "Lagos";
-        postList =  this.getPostList(start, end);
+        postList = this.getPostList(start, end);
         sectionList = ev.getSections();
         productList = ev.getProductList();
         productOrders = ev.getProductOrders();
@@ -82,8 +82,7 @@ public class DashboardController {
     }
     @ManagedProperty(value = "#{adminController}")
     private AdminController logc;
-
-     private int postId;
+    private int postId;
 
     public int getPostId() {
         return postId;
@@ -92,16 +91,15 @@ public class DashboardController {
     public void setPostId(int postId) {
         this.postId = postId;
     }
-     
-    public String onload(int post_id){
-        System.out.println("Post id "+post_id);
-      po = ev.findPost(post_id);
-       return "";
+
+    public String onload(int post_id) {
+        System.out.println("Post id " + post_id);
+        po = ev.findPost(post_id);
+        return "";
     }
-     
-    
+
     public int getStart() {
-       return start;
+        return start;
     }
 
     public void setStart(int start) {
@@ -316,6 +314,37 @@ public class DashboardController {
         this.state = state;
     }
 
+    public List getStates() {
+        List<String> s = new ArrayList();
+        s.add("Lagos");
+        s.add("Abuja");
+        s.add("Rivers");
+        s.add("Edo");
+        s.add("Delta");
+        s.add("Abia");
+        s.add("Adawama");
+        s.add("Akwa-Ibom");
+        s.add("Cross-River");
+        s.add("Kano");
+        s.add("Katsina");
+        s.add("Sokoto");
+        s.add("Kwara");
+        s.add("Kogi");
+        s.add("Bayelsa");
+        s.add("Benue");
+        s.add("Ogun");
+        s.add("Osun");
+        s.add("Oyo");
+        s.add("Imo");
+        s.add("Enugu");
+        s.add("Ekiti");
+        s.add("Borno");
+        s.add("Nasarawa");
+        s.add("Niger");
+        s.add("Kaduna");
+        return s;
+    }
+
     public String getShowAddress() {
         return showAddress;
     }
@@ -390,7 +419,7 @@ public class DashboardController {
     public String viewPost(Post p) {
         pv.setPostId(p);
         ev.recordView(pv);
-            return "/pages/view_post";
+        return "/pages/view_post";
     }
 
     public String createProduct() {
@@ -424,26 +453,26 @@ public class DashboardController {
 
     public String checkout() {
 
-        try{
-         EmailHandler eh = new EmailHandler(new EmailDTO(ord.getEmail()));
-        
-       
-       
-        
-        Map<Product, Integer> cartItems = logc.getCartItems();
-        ord.setState(state);
-        this.ev.checkout(cartItems, ord);
+        try {
+            EmailHandler eh = new EmailHandler(new EmailDTO(ord.getEmail()));
 
-        this.logc.cartItems.clear();
 
-        context = FacesContext.getCurrentInstance();
-        context.addMessage(component.getClientId(), new FacesMessage("Your order has been received ,a mail will be sent to you shortly"));
-        return "";
-        }catch(Exception no){
-           
+
+
+            Map<Product, Integer> cartItems = logc.getCartItems();
+            ord.setState(state);
+            this.ev.checkout(cartItems, ord);
+
+            this.logc.cartItems.clear();
+
             context = FacesContext.getCurrentInstance();
-        context.addMessage(component.getClientId(), new FacesMessage(no.getMessage()));
-        return "";
+            context.addMessage(component.getClientId(), new FacesMessage("Your order has been received ,a mail will be sent to you shortly"));
+            return "";
+        } catch (Exception no) {
+
+            context = FacesContext.getCurrentInstance();
+            context.addMessage(component.getClientId(), new FacesMessage(no.getMessage()));
+            return "";
         }
     }
 
@@ -531,20 +560,31 @@ public class DashboardController {
         ev.deleteRemark(p);
         return "";
     }
-    
-    
-    public int getTotalActivePost(){
+
+    public int getTotalActivePost() {
         return ev.getTotalActivePosts().intValue();
     }
-    
-    public List<Post>getSimilarPost(Post p){
-        
+
+    public List<Post> getSimilarPost(Post p) {
+
         return ev.getSimilarPost(p);
     }
-    
-    
-    public List<Post>getPopularPost(){
+
+    public List<Post> getPopularPost() {
         return ev.getPopularPost();
     }
     
+    public String removeProduct(Product p){
+        this.ev.removeProduct(p);
+        return "manage_product?faces-redirect=true";
+    }
+    
+     public boolean canDelete(Product p){
+        
+         if(p.getProductOrderList().isEmpty()){
+             return true;
+         }else
+         
+        return false;
+    }
 }

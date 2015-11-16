@@ -441,4 +441,9 @@ public class EveEJB {
        
      return em.find(Post.class, post_id);
     }
+
+    public void removeProduct(Product p) {
+      Product po = em.merge(p);
+      em.remove(po);
+    }
 }
