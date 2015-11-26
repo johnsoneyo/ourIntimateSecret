@@ -31,14 +31,15 @@
     <![endif]-->
 
       <script type='text/javascript' src='//dsms0mj1bbhn4.cloudfront.net/assets/pub/shareaholic.js' data-shr-siteid='e32ac80dca1e464a110745fb3de90f9b' data-cfasync='false' async='async'></script>
-
+<!--
        <script>
   (function (w,i,d,g,e,t,s) {w[d] = w[d]||[];t= i.createElement(g);
     t.async=1;t.src=e;s=i.getElementsByTagName(g)[0];s.parentNode.insertBefore(t, s);
   })(window, document, '_gscq','script','//widgets.getsitecontrol.com/28494/script.js');
-</script>
+</script>-->
  
-      
+<script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us12.list-manage.com","uuid":"fabecbc07472bda17c46026c2","lid":"11ff1b07e0"}) })</script>    
+
    <f:metadata>
             <f:viewParam id="id" name="post_id" value="#{adminController.postId}" required="true" />
             <f:viewAction action="#{adminController.onload(adminController.postId)}" />
@@ -96,11 +97,11 @@
                         </li>
                         
                         <li>
-                            <a href="#{request.contextPath}/w/about_us.xhtml">About me</a>
+                            <a href="#{request.contextPath}/w/about_me.xhtml">About me</a>
                         </li>
                         
                          <li>
-                            <a href="#{request.contextPath}/w/about_us.xhtml">Contact me</a>
+                            <a href="#{request.contextPath}/w/contact_us.xhtml">Contact me</a>
                         </li>
                     </ul>
                 </div>
@@ -129,7 +130,7 @@
 
                 <!-- Author -->
                 <p class="lead">
-                    by <a href="#">Omotayo eve</a>
+                    by <a href="#">our intimate secrets</a>
                 </p>
 
                 <hr />
@@ -208,7 +209,7 @@
 
                 <!-- Blog Categories Well -->
                 <div class="well">
-                    <h4>Eves Initimate Explore</h4>
+                    <h4>Discover Secrets</h4>
                     <div class="row">
                         <div class="col-lg-12">
                             <ul class="list-unstyled">
@@ -239,7 +240,7 @@
                             </a>
 			    <div class="media-body">
                                 <h4 class="media-heading"><h:commandLink    action='#{adminController.viewPost(p)}' ><h:outputText value='#{p.postTitle}' escape="false" /></h:commandLink></h4>
-			      <p class="by-author">By Omotayo </p>
+			      <p class="by-author">By our intimate secrets </p>
 			    </div>
 			  </li>
 			
@@ -263,17 +264,17 @@
     </div>
     <!-- /.container -->
 
-       <footer class="footer-distributed">
+      <footer class="footer-distributed">
 
             <div class="footer-left">
 
-                <h3>  <img class='img-responsive' width="120" height="120" src='img/eve.png' /> 
+                <h3>  <img class='img-responsive' width="200" height="200" src='img/int.png' /> 
                 </h3>
 
                 <p class="footer-links">
                     <a href="#">Home</a>
                     ·
-                    <a href="#{request.contextPath}/w/products_pr.xhtml">Product</a>
+                    <a href="#{request.contextPath}/w/products_pr.xhtml">Shop</a>
                     ·
 
                     <a href="#{request.contextPath}/w/about_us.xhtml">About</a>
@@ -281,24 +282,24 @@
 
                 </p>
 
-                <p class="footer-company-name"> 2015</p>
+                <p class="footer-company-name">  2015</p>
             </div>
 
             <div class="footer-center">
 
                 <div>
                     <i class="fa fa-map-marker"></i>
-                    <p><span>12, ashimowu street new garage</span> Lagos, NGR</p>
+                    <p><span>Ikeja</span> Lagos, NGR</p>
                 </div>
 
                 <div>
                     <i class="fa fa-phone"></i>
-                    <p>+23407088812651</p>
+                    <p>+2348121133010</p>
                 </div>
 
                 <div>
                     <i class="fa fa-envelope"></i>
-                    <p><a href="mailto:support@room.com">support@room.com</a></p>
+                    <p><a href="mailto:info@ourintimatesecrets.com">info@ourintimatesecrets.com</a></p>
                 </div>
 
             </div>
@@ -307,7 +308,7 @@
 
                 <p class="footer-company-about">
                     <span>About the company</span>
-                    Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+                 Our intimate secrets  
                 </p>
 
                 <div class="footer-icons">

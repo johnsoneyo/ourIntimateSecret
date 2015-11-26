@@ -92,7 +92,7 @@ and open the template in the editor.
                     <div class='row'>
                         <div class="col-md-12">
 
-                            <h:dataTable value="#{dashboardController.postList}" var="po" class="table table-hover" >
+                            <h:dataTable value="#{dashboardController.allPost}" var="po" class="table table-hover" >
                                 <h:column>
                                     <f:facet name="header">ID</f:facet>
 
@@ -110,9 +110,16 @@ and open the template in the editor.
                                     <h:outputText escape="false" value="#{po.postTitle}" />
                                 </h:column>
 
+                                
+                                
                                 <h:column>
                                     <f:facet name="header">Status</f:facet>
                                     <h:outputText class="#{po.isActive ? 'label label-success':'label label-danger'}" value="#{po.isActive? 'Active':'Inactive'}" />
+                                </h:column>
+                                
+                                <h:column>
+                                    <f:facet name="header">View on page</f:facet>
+                                    <h:outputText  value="#{po.postViewsList.size()}" />
                                 </h:column>
 
                                 <h:column>
@@ -141,6 +148,12 @@ and open the template in the editor.
                                             <li role="presentation">
                                                
                                                <h:commandLink action="#{adminController.editPostScreen(po)}" value="Edit" />
+                                           
+                                            </li>
+                                            
+                                              <li role="presentation">
+                                               
+                                                  <h:commandLink  action="#{adminController.delete(po)}" value="Remove" />
                                            
                                             </li>
 
@@ -198,8 +211,9 @@ and open the template in the editor.
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
+<!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
+            <script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
         <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
         <script src="../../assets/js/vendor/holder.min.js"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

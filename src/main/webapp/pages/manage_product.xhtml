@@ -113,12 +113,16 @@ and open the template in the editor.
                                       </h:column>
 
                                 <h:column>
-                                    <f:facet name="header">Price</f:facet>
+                                    <f:facet name="header">Current Price</f:facet>
                                     <h:outputText rendered="#{not po.editable}" value="#{po.price}" />
                                      <h:inputText rendered="#{po.editable}"  value="#{po.price}" class="form-control"  />
                                 </h:column>
                                 
-                                
+                                   <h:column>
+                                    <f:facet name="header">Old Price</f:facet>
+                                    <h:outputText rendered="#{not po.editable}" value="#{po.oldPrice}" />
+                                    <h:inputText rendered="#{po.editable}"  value="#{po.oldPrice}" class="form-control"  />
+                                </h:column>
 
                                 <h:column>
                                     <f:facet name="header">Available Stock</f:facet>

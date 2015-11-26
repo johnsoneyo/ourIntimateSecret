@@ -50,6 +50,8 @@ and open the template in the editor.
 
             });
         </script>
+        
+        <script src="//cdn.ckeditor.com/4.5.5/standard/ckeditor.js"></script>
     </head>
 
     <body>
@@ -109,7 +111,10 @@ and open the template in the editor.
                         <h:messages style="list-style-type:  none" class="alert alert-danger" />
 
                         <div class="col-md-12">
-                            <textarea id="txtEditor"></textarea> 
+                           <textarea name="editor1"></textarea>
+        <script>
+            CKEDITOR.replace( 'editor1' );
+        </script>
                         </div>
                     </div>  
                     <hr />

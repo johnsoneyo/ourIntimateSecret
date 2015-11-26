@@ -181,7 +181,7 @@ public class AdminController {
 
     public String viewSection(Section s) {
 
-        sectionPostList = s.getPostList();
+        sectionPostList = getActiveList(s);
 
 
         return "section_post?faces-redirect=true";
@@ -346,5 +346,23 @@ public class AdminController {
         this.c = c;
         System.out.println("Category "+c.getName());
         return "product_cat?faces-redirect=true";
+    }
+
+    private List<Post> getActiveList(Section s) {
+       List<Post>active = new ArrayList();
+       
+       for(Post p : s.getPostList()){
+           if(p.getIsActive()){
+               active.add(p);
+           }
+       }
+       return active;
+    }
+    
+    
+    
+    public String delete(Post p){
+        ev.delete(p);
+        return "manage_post";
     }
 }

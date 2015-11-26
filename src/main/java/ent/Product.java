@@ -71,6 +71,8 @@ public class Product implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "price")
     private Double price;
+    @Column(name = "old_price")
+    private Double oldPrice;
     @Basic(optional = false)
     @NotNull
     @Column(name = "time_created")
@@ -237,6 +239,14 @@ public class Product implements Serializable {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public Double getOldPrice() {
+        return oldPrice;
+    }
+
+    public void setOldPrice(Double oldPrice) {
+        this.oldPrice = oldPrice;
     }
     
     

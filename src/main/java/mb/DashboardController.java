@@ -67,7 +67,7 @@ public class DashboardController {
     EveEJB ev;
     private Boolean hideColumn;
     private int start = 0;
-    private int end = 4;
+    private int end = 300;
     private int totalRows;
     private int currentRow;
 
@@ -144,14 +144,20 @@ public class DashboardController {
 
 
     }
+    
+  
 
     private List<Post> getPostList(int start, int end) {
 
-        return ev.getPostList(start, end);
+        return ev.getFrontPagePost(start, end);
     }
 
     public List<Post> getPostList() {
         return postList;
+    }
+    
+    public List<Post>getAllPost(){
+        return ev.getPosts();
     }
 
     public void setPostList(List<Post> postList) {
@@ -395,7 +401,7 @@ public class DashboardController {
 
     public String editPost() {
 
-        ev.editPost(logc.getP());
+        ev.editPost(logc.getP(),part,sec);
         return "manage_post";
     }
 
@@ -587,4 +593,15 @@ public class DashboardController {
          
         return false;
     }
+     
+     public boolean cascades(Post p){
+       if(p.getCommentList().size()>0){
+           return false;
+       }if(p.getPostViewsList().size()>0){
+           return false;
+       }
+       else return true;
+         
+     }
+     
 }

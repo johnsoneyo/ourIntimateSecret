@@ -94,9 +94,31 @@ public class EveEJB {
         }
     }
 
-    public void editPost(Post p) {
+    public void editPost(Post p,Part pa,Section s) {
 
-        em.merge(p);
+      
+        
+        if(pa.getSize()==0){
+           
+            p.setSectionId(s);
+            em.merge(p);
+        }else
+        
+         try {
+            InputStream is = pa.getInputStream();
+            byte[] value = IOUtils.toByteArray(is);
+            
+           
+            
+            p.setPostImage(value);
+            p.setSectionId(s);
+            em.merge(p);
+        } catch (IOException no) {
+            no.printStackTrace();
+        }
+        
+       
+        
     }
 
     public List<Section> getSections() {
@@ -404,7 +426,13 @@ public class EveEJB {
 
     public List<Post> getPostList(int start, int end) {
 
-        return em.createQuery(String.format("select p from Post p where p.isActive = true order by p.timeCreated desc ")).setFirstResult(start).setMaxResults(end).getResultList();
+        return em.createQuery(String.format("select p from Post p  order by p.timeCreated desc ")).setFirstResult(start).setMaxResults(end).getResultList();
+
+    }
+    
+    public List<Post> getFrontPagePost(int start, int end) {
+
+        return em.createQuery(String.format("select p from Post p where p.isActive = true  order by p.timeCreated desc ")).setFirstResult(start).setMaxResults(end).getResultList();
 
     }
 
@@ -445,5 +473,10 @@ public class EveEJB {
     public void removeProduct(Product p) {
       Product po = em.merge(p);
       em.remove(po);
+    }
+
+    public void delete(Post p) {
+        Post merge = em.merge(p);
+        em.remove(merge);
     }
 }
